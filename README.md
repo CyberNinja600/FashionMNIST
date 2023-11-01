@@ -15,6 +15,7 @@ This project aims to develop an AI solution for NITEX to identify and classify s
    
 ### Analysis
 *Analysis.ipynb: Jupyter Notebook for exploring the dataset and documenting insights.*
+
 Findings: 
 1. The raw csv contains the labels and the pixel intensity, The first column holds the label and next 784 column holds all the pixel value of the image.
 2. The shape of the feature is 28x28x1, height and width of the images are 28x28 and has a channel 1 which indicates these images are grayscale
@@ -26,7 +27,8 @@ Findings:
 
 ### Model Architecture & Training
 *Training.ipynb: Jupyter Notebook for designing and training the machine learning model.*
-####Motivation: 
+
+#### Motivation: 
 I tried to solve the problem with a custom CNN model, because I previously worked on a similar subject and personally I feel it is the best architecture suited for this types of problem. I started with building the model with two conv2d layers with filters=8. then added and removed BatchNormlization, Maxpool2d layers. First I kept the conv2d layer constant and changed the values and the frequencies for Maxpool2d and dropout layes, in order to find the best fit. After I was happy with the result where my model is in the bestfit (consistency between validation and training loss). I started to aim for the higher accuracies by increasing the conv2 layers. While I increased more conv2 layers, I had to change some values in the dropout layer to minimize the gap between training and validation loss. I kept a note on which layer is   contributing what to my architecture, which helped me find better results with the model. I also used two callback function to finetune the model, ReduceLROnPlateau decreases the learning rate when the model hits Plateau(not improving or deteriorating), then I used EarlyStopping which will stopp the epochs early if the model stars to deteriorate. I kept the patience in a manner so if ReduceLROnPlateau doesn't work it will stop by EarlyStopping. It helped me boost the accuracies to 0.9442 on the validation set. The validation is created by splitting the training set with .1 ratio. The final epoch contained the following data 
 *loss: 0.0853 - accuracy: 0.9679 - val_loss: 0.1945 - val_accuracy: 0.9442*
 
