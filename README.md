@@ -17,13 +17,16 @@ This project aims to develop an AI solution for NITEX to identify and classify s
   5. In the context of grayscale images, lower pixel values represent darker shades of gray, whereas higher pixel values represent lighter shades.
   6. The histogram on standard deviation suggests that the pixel values within each image are relatively consistent and do not vary widely from the mean intensity.
   7. I put a visualization for first 10 images of each label. According to the dataset descrioption the labels <ul>  <li>0 T-shirt/top </li> <li>1 Trouser</li> <li>2 Pullover </li> <li>3 Dress </li> <li>4 Coat </li><li>5 Sandal </li> <li>6 Shirt </li> <li>7 Sneaker </li> <li>8 Bag </li> <li>9 Ankle boot </li> </ul> Juidging by first 10 images, we can already tell the main mis-classification will occure between label 0 (T-shirt/top) and label 6 (6 Shirt), as they are both very similar, with very few details which could alsobe oversighted by humaneyes.
-  8. 
 
 
 
+### Model Architecture & Training
+  Training.ipynb: Jupyter Notebook for designing and training the machine learning model.
+  Motivation: 
+  <ul>I started with building the model with two conv2d layers with filters=8. then added and removed BatchNormlization, Maxpool2d layers. First I kept the conv2d layer constant and changed the values and the frequencies for Maxpool2d and dropout layes, in order to find the best fit. After I was happy with the result where my model is in the bestfit (consistency between validation and training loss). I started to aim for the higher accuracies by increasing the conv2 layers. While I increased more conv2 layers, I had to change some values in the dropout layer to minimize the gap between training and validation loss. I kept a note on which layer is contributing what to my architecture, which helped me find better results with the model.<ul>
 
 
-model_training.ipynb: Jupyter Notebook for designing and training the machine learning model.
+
 evaluate_model.py: Script to evaluate the trained model on a given dataset folder.
 model_summary.txt: Text file containing the summary of the trained model's architecture.
 output.txt: Text file generated after model evaluation, including model summary, evaluation metrics, and insights.
